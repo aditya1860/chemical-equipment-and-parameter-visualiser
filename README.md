@@ -251,3 +251,5 @@ This project is licensed under the **MIT License**.
 
 For issues, questions, or feature requests, please open an issue on the GitHub repository.
 
+# LIVE DEMO
+https://chemical-equipment.vercel.app
