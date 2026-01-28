@@ -1,77 +1,162 @@
-
 import React, { useState } from 'react';
-import { FlaskConical, Lock, User, ArrowRight } from 'lucide-react';
+import {
+  FlaskConical,
+  Lock,
+  User,
+  ArrowRight,
+  Loader2,
+  Sparkles
+} from 'lucide-react';
 
-export const Login: React.FC<{ onLogin: (user: string) => void }> = ({ onLogin }) => {
+interface LoginProps {
+  onLogin: (user: string) => void;
+}
+
+export const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [username, setUsername] = useState('Admin');
   const [password, setPassword] = useState('password');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (username && password) {
-      onLogin(username);
-    } else {
-      setError('Invalid credentials');
+    setError('');
+
+    if (!username.trim() || !password.trim()) {
+      setError('Please enter both username and password.');
+      return;
     }
+
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      onLogin(username.trim());
+    }, 800);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 p-6">
-      <div className="w-full max-w-md bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
-        <div className="p-8 bg-slate-900 text-white flex flex-col items-center text-center">
-          <div className="bg-blue-600 p-4 rounded-2xl mb-4 shadow-lg shadow-blue-500/30">
-            <FlaskConical size={40} />
+    <div className="min-h-screen flex items-center justify-center bg-slate-950 px-6">
+      <div className="relative w-full max-w-md">
+        {/* Glow */}
+        <div className="absolute inset-0 rounded-3xl bg-blue-500/20 blur-2xl" />
+
+        <div className="relative bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl overflow-hidden">
+          {/* Header */}
+          <div className="p-8 text-center border-b border-slate-800">
+            <div className="relative mx-auto w-fit mb-4">
+              <div className="absolute inset-0 bg-blue-500 blur-md opacity-40 rounded-2xl" />
+              <div className="relative bg-slate-950 border border-blue-500/40 p-4 rounded-2xl">
+                <FlaskConical size={36} className="text-blue-400" />
+              </div>
+            </div>
+
+            <h1 className="text-2xl font-bold text-slate-100 tracking-tight">
+              ChemEquip Visualizer
+            </h1>
+            <p className="text-slate-400 text-sm mt-1">
+              AI-Driven Equipment Analytics Platform
+            </p>
+
+            <div className="inline-flex items-center gap-2 mt-4 px-3 py-1.5
+              rounded-full bg-slate-800 border border-slate-700 text-xs text-blue-400">
+              <Sparkles size={14} />
+              AI Assisted Mode
+            </div>
           </div>
-          <h1 className="text-2xl font-bold">ChemEquip Visualizer</h1>
-          <p className="text-slate-400 mt-1">Chemical Equipment Parameter Analytics</p>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="p-8 space-y-6">
+            <div className="space-y-4">
+              {/* Username */}
+              <div>
+                <label className="block text-xs font-semibold text-slate-400 mb-2 uppercase tracking-wide">
+                  Username
+                </label>
+                <div className="relative">
+                  <User
+                    size={18}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"
+                  />
+                  <input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="w-full pl-10 pr-4 py-3 rounded-xl
+                    bg-slate-950 border border-slate-700 text-slate-100
+                    focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                    outline-none transition"
+                    placeholder="Enter username"
+                  />
+                </div>
+              </div>
+
+              {/* Password */}
+              <div>
+                <label className="block text-xs font-semibold text-slate-400 mb-2 uppercase tracking-wide">
+                  Password
+                </label>
+                <div className="relative">
+                  <Lock
+                    size={18}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"
+                  />
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full pl-10 pr-4 py-3 rounded-xl
+                    bg-slate-950 border border-slate-700 text-slate-100
+                    focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                    outline-none transition"
+                    placeholder="••••••••"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Error */}
+            {error && (
+              <p className="text-sm text-red-400 font-medium">
+                {error}
+              </p>
+            )}
+
+            {/* Button */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full flex items-center justify-center gap-2 py-4 rounded-xl
+              bg-gradient-to-r from-blue-600 to-indigo-600
+              hover:from-blue-500 hover:to-indigo-500
+              text-white font-bold transition
+              shadow-lg shadow-blue-500/30
+              disabled:opacity-70 disabled:cursor-not-allowed
+              active:scale-[0.98]"
+            >
+              {loading ? (
+                <>
+                  <Loader2 size={20} className="animate-spin" />
+                  Authenticating…
+                </>
+              ) : (
+                <>
+                  Enter Dashboard
+                  <ArrowRight size={20} />
+                </>
+              )}
+            </button>
+
+            {/* Footer */}
+            <p className="text-center text-xs text-slate-500 leading-relaxed">
+              Demo environment enabled
+              <br />
+              <span className="text-slate-400 font-medium">
+                Credentials:
+              </span>{' '}
+              Admin / password
+            </p>
+          </form>
         </div>
-
-        <form onSubmit={handleSubmit} className="p-8 space-y-6">
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">Username</label>
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                <input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="Enter your username"
-                />
-              </div>
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">Password</label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="••••••••"
-                />
-              </div>
-            </div>
-          </div>
-
-          {error && <p className="text-red-500 text-sm font-medium">{error}</p>}
-
-          <button
-            type="submit"
-            className="w-full flex items-center justify-center space-x-2 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20 active:scale-[0.98]"
-          >
-            <span>Access Dashboard</span>
-            <ArrowRight size={20} />
-          </button>
-
-          <p className="text-center text-xs text-slate-400">
-            Secure enterprise access protocol enabled. 
-            <br />Demo: Admin / password
-          </p>
-        </form>
       </div>
     </div>
   );
