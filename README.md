@@ -1,60 +1,82 @@
 # 🔬 ChemEquip Visualizer
 
-**ChemEquip Visualizer** is a high-performance web dashboard designed for **visualizing, analyzing, and reporting chemical equipment operational data** from CSV datasets.
-It combines **interactive data visualization**, **AI-powered operational insights**, and **automated PDF reporting** to support data-driven decision-making in chemical and process industries.
+**ChemEquip Visualizer** is a high-performance, enterprise-ready web dashboard for visualizing, analyzing, and reporting chemical equipment operational data from CSV datasets.
+It integrates **interactive data visualization**, **AI-driven operational intelligence**, and **automated PDF reporting** to enable **data-driven decision-making** in chemical and process industries.
 
 ---
 
 ## ✨ Key Features
 
-* **📈 Interactive Data Visualization**
-  Dynamic charts and graphs for monitoring equipment parameters such as flow rate, pressure, and temperature.
+### 📈 Interactive Data Visualization
 
-* **🤖 AI-Powered Operational Insights**
-  Integration with **Google Gemini AI** to generate intelligent recommendations, risk assessments, and performance observations.
+* Dynamic and responsive charts for monitoring critical equipment parameters such as **flow rate**, **pressure**, and **temperature**
+* Real-time data rendering with smooth user interaction
 
-* **📊 Advanced Analytics**
-  Summary statistics, distribution analysis, and equipment-type comparisons.
+### 🤖 AI-Powered Operational Insights
 
-* **📁 CSV Data Import**
-  Upload and parse structured CSV datasets with real-time validation.
+* Integration with **Google Gemini AI**
+* Generates:
 
-* **📄 Automated PDF Reports**
-  Generate and export comprehensive analysis reports for documentation and audits.
+  * Operational risk classification (Low / Medium / High)
+  * Performance observations
+  * Optimization recommendations
+  * Preventive maintenance suggestions
 
-* **📚 Session History Management**
-  Save, reload, and review previous analysis sessions.
+### 📊 Advanced Analytics
 
-* **🔐 User Authentication**
-  Secure login system suitable for enterprise or internal tooling.
+* Summary statistics
+* Distribution analysis
+* Equipment-type comparisons for deeper insights
 
-* **📱 Responsive UI**
-  Fully responsive design optimized for desktop and mobile devices.
+### 📁 CSV Data Import
+
+* Upload and parse structured CSV datasets
+* Real-time validation and error handling
+
+### 📄 Automated PDF Reporting
+
+* Export comprehensive analysis reports
+* Suitable for documentation, audits, and internal reviews
+
+### 📚 Session History Management
+
+* Save, reload, and review previous analysis sessions
+* Local persistence for fast access
+
+### 🔐 User Authentication
+
+* Secure login system
+* Designed for enterprise or internal tooling (extensible for production use)
+
+### 📱 Responsive User Interface
+
+* Fully responsive design
+* Optimized for desktop, tablet, and mobile devices
 
 ---
 
 ## 🛠️ Technology Stack
 
-**Frontend**
+### Frontend
 
-* React 19
-* TypeScript
-* Vite
+* **React 19**
+* **TypeScript**
+* **Vite**
 
-**UI & Visualization**
+### UI & Data Visualization
 
-* Recharts
-* Tailwind CSS
-* Lucide React
+* **Recharts**
+* **Tailwind CSS**
+* **Lucide React**
 
-**AI Integration**
+### AI Integration
 
-* Google Gemini API (`@google/genai`)
+* **Google Gemini API** (`@google/genai`)
 
-**Build & Tooling**
+### Build & Tooling
 
-* Vite
-* npm
+* **Vite**
+* **npm**
 
 ---
 
@@ -62,45 +84,43 @@ It combines **interactive data visualization**, **AI-powered operational insight
 
 ### Prerequisites
 
-* Node.js **v18.0 or higher**
-* Google Gemini API key (from **Google AI Studio**)
-
----
+* **Node.js** v18.0 or higher
+* **Google Gemini API Key** (from Google AI Studio)
 
 ### Installation
 
 1. **Clone the repository**
 
-```bash
-git clone <repository-url>
-cd copy-of-chemequip-visualizer
-```
+   ```bash
+   git clone <repository-url>
+   cd copy-of-chemequip-visualizer
+   ```
 
 2. **Install dependencies**
 
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
 3. **Configure environment variables**
 
-Create a `.env.local` file in the project root and add:
+   Create a `.env.local` file in the project root:
 
-```env
-VITE_GEMINI_API_KEY=your_actual_api_key_here
-```
+   ```env
+   VITE_GEMINI_API_KEY=your_actual_api_key_here
+   ```
 
 4. **Start the development server**
 
-```bash
-npm run dev
-```
+   ```bash
+   npm run dev
+   ```
 
-5. Open your browser at:
+5. **Open in browser**
 
-```
-http://localhost:3000
-```
+   ```
+   http://localhost:3000
+   ```
 
 ---
 
@@ -111,13 +131,13 @@ copy-of-chemequip-visualizer/
 ├── src/
 │   ├── components/
 │   │   ├── Dashboard.tsx      # Main analytics dashboard
-│   │   ├── Layout.tsx         # App layout and navigation
+│   │   ├── Layout.tsx         # Application layout & navigation
 │   │   ├── Login.tsx          # Authentication module
 │   │   └── HistoryView.tsx    # Session history viewer
 │   ├── services/
-│   │   ├── dataService.ts     # CSV parsing and data utilities
+│   │   ├── dataService.ts     # CSV parsing & data utilities
 │   │   └── geminiService.ts   # Gemini AI integration
-│   ├── types.ts               # TypeScript definitions
+│   ├── types.ts               # Global TypeScript definitions
 │   └── App.tsx                # Application entry point
 ├── public/
 ├── index.html
@@ -130,9 +150,9 @@ copy-of-chemequip-visualizer/
 
 ## 📊 CSV Data Format
 
-The application expects CSV files with the following schema:
+The application expects CSV files in the following format:
 
-```csv
+```
 Equipment Name,Type,Flowrate,Pressure,Temperature
 Heat Exchanger 01,Exchanger,450.5,12.5,85.2
 Distillation Column A,Tower,1200.0,4.2,165.0
@@ -146,7 +166,7 @@ Distillation Column A,Tower,1200.0,4.2,165.0
    Use default credentials (`Admin / password`) or extend authentication logic.
 
 2. **Upload Dataset**
-   Upload a CSV file via drag-and-drop or file selector.
+   Upload a CSV file using drag-and-drop or file selector.
 
 3. **Analyze Data**
    Explore interactive charts and AI-generated insights.
@@ -161,37 +181,35 @@ Distillation Column A,Tower,1200.0,4.2,165.0
 
 ## 🤖 AI Capabilities
 
-Powered by **Gemini 1.5 Flash**, the system provides:
+Powered by **Gemini 1.5 Flash**, the system delivers:
 
-* Operational risk classification (Low / Medium / High)
-* Performance observations
-* Technical and optimization recommendations
-* Preventive maintenance suggestions
+* Operational risk classification
+* Performance analysis
+* Technical optimization recommendations
+* Preventive maintenance insights
 
 ---
 
 ## 🐛 Troubleshooting
 
-### Common Issues
+### No AI insights displayed
 
-* **No AI insights displayed**
+* Verify API key in `.env.local`
+* Check browser console for errors
+* Ensure an active internet connection
 
-  * Verify API key in `.env.local`
-  * Check browser console for errors
-  * Ensure active internet connection
+### Environment variables not detected
 
-* **Environment variable not detected**
+* Restart the development server after editing `.env.local`
 
-  * Restart the development server after editing `.env.local`
+### CSV parsing errors
 
-* **CSV parsing errors**
+* Ensure column names and data types match the required schema
 
-  * Ensure column names and data types match the required format
+### Charts not rendering
 
-* **Charts not rendering**
-
-  * Clear browser cache
-  * Verify all dependencies are installed
+* Clear browser cache
+* Verify all dependencies are installed correctly
 
 ---
 
@@ -199,7 +217,7 @@ Powered by **Gemini 1.5 Flash**, the system provides:
 
 ```bash
 npm run dev       # Start development server
-npm run build     # Production build
+npm run build     # Create production build
 npm run preview   # Preview production build
 ```
 
@@ -208,7 +226,7 @@ npm run preview   # Preview production build
 ## 🔒 Security Considerations
 
 * Do **not** commit `.env.local` to version control
-* Session history is stored using `localStorage` (not production-ready)
+* Session history uses `localStorage` (not production-ready)
 * Implement secure authentication and HTTPS for production deployments
 
 ---
@@ -238,18 +256,12 @@ This project is licensed under the **MIT License**.
 
 ---
 
-## 🙏 Acknowledgments
+## 🌍 Live Demo
 
-* Google Gemini API
-* Recharts
-* Lucide Icons
-* Tailwind CSS
+🔗 **[https://chemical-equipment-and-parameter-vi.vercel.app/)**
 
 ---
 
 ## 📧 Support
 
 For issues, questions, or feature requests, please open an issue on the GitHub repository.
-
-# LIVE DEMO
-https://chemical-equipment.vercel.app
